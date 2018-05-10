@@ -1,16 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class User : MonoBehaviour {
+    public string username;
+    public string password;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public User (string nombre , string pass)
+    {
+        username = nombre;
+        password = pass;
+    }
+
+    public string toJson()
+    {
+        return JsonUtility.ToJson(this);
+    }
 }

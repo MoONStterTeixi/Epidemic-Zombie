@@ -4,15 +4,17 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class GameScene : MonoBehaviour {
-    public Text Cant;
-    public Text Cargador;
+    public Text Nivel;
+    public Text RondaAct;
+    public Text Money;
     private static int kills = 0;
     public SpriteRenderer spriteRenderer;
 
     private void Update()
     {
-        Cant.text = "Zombies Matados: " + kills;
-        Cargador.text = Gun.Municion + "";
+        Nivel.text = DataClass.player.experience+"";
+        RondaAct.text = DataClass.player.act_round + "";
+        Money.text = DataClass.player.money + "";
     }
     public static void Addkills()
     {
