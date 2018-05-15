@@ -10,18 +10,14 @@ public class Login : MonoBehaviour {
 
     public void OnLogin()
     {
+        Conection con = gameObject.AddComponent<Conection>();
         string nombre = user.text;
         string pass = passw.text;
         DataClass.usr = new User(nombre, pass);
-        string a = Conection.FunctionSN(DataClass.usr, "Loginname");
-        if (a == "" || a == null)
-        {
-            //Alert fallo credenciales.
-        }
-        else
-        {
-            Load.username = a;
-            SceneManager.LoadScene("Load");
-        }
+        con.FunctionSN("Loginname");
+    }
+    public void OnRegister()
+    {
+        Application.OpenURL("http://unity3d.com/");
     }
 }

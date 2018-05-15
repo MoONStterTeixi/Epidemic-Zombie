@@ -4,4 +4,5 @@ public class DataClass : MonoBehaviour
 {
     public static Player player;
     public static User usr;
+    //public static string passchar "☠";
 }

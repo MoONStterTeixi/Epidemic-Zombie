@@ -8,15 +8,12 @@ public class Load : MonoBehaviour {
 
     void Start () {
         try {
-            string a = Conection.FunctionEZ(DataClass.usr, "get");
-            DataClass.player = JsonUtility.FromJson<Player>(a);
-            SceneManager.LoadScene("Game");
+            Conection con = gameObject.AddComponent<Conection>();
+            con.FunctionEZ(DataClass.usr, "get");
         }
         catch(Exception e)
         {
             SceneManager.LoadScene("Acces");
         }
-
     }
-
 }

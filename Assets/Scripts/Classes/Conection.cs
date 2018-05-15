@@ -1,26 +1,35 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
-using System.IO;
-using System.Net;
 using UnityEngine;
 
 public class Conection : MonoBehaviour {
 
-    public static string FunctionSN(User usuario, string action)
+
+    public void FunctionSN(string action)
     {
-        string url = "http://172.17.129.63/Epidemic-Zombie-WebService/API-Rest/sn/query.php?action=" + action + "&json=" + usuario.toJson();
-        WebRequest request = HttpWebRequest.Create(url);
-        WebResponse response = request.GetResponse();
-        StreamReader reader = new StreamReader(response.GetResponseStream());
-        return reader.ReadToEnd();
+        string url = "https://moonstterinc.000webhostapp.com/SN/query.php?action=" + action + "&json=" + DataClass.usr.toJson();
+        StartCoroutine(GetRequest(url));
     }
 
-    public static string FunctionEZ(User usr,  string action){
+    public void FunctionEZ(User usr,  string action){
 
-        string url = "http://172.17.129.63/Epidemic-Zombie-WebService/API-Rest/ez/query.php?action=" + action + "&json=" + usr.toJson();
-        WebRequest request = HttpWebRequest.Create(url);
-        WebResponse response = request.GetResponse();
-        StreamReader reader = new StreamReader(response.GetResponseStream());
-        return reader.ReadToEnd();
+        string url = "https://moonstterinc.000webhostapp.com/EZ/query.php?action=" + action + "&json=" + usr.toJson();
+        StartCoroutine(GetRequest2(url));
     }
+
+    IEnumerator GetRequest(string LoginUrl)
+    {
+        WWW www = new WWW(LoginUrl);
+        yield return www;
+        string returnvalue = www.text;
+        ChangeScene.Login(returnvalue);
+    }
+
+    IEnumerator GetRequest2(string LoginUrl)
+    {
+        WWW www = new WWW(LoginUrl);
+        yield return www;
+        string returnvalue = www.text;
+        ChangeScene.LoadF(returnvalue);
+    }
+
 }
