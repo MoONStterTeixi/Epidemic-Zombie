@@ -10,7 +10,7 @@ public class Player {
     //Stats
     public int vidaMax;
     public int DmgMele;
-    public int GeneracionOnline;
+    public int Torreta;
     public int Suerte;
     public int DmgRange;
 
@@ -24,7 +24,7 @@ public class Player {
 
         this.vidaMax = VidaMax;
         this.DmgMele = DmgMele;
-        this.GeneracionOnline = generacionOnline;
+        this.Torreta = generacionOnline;
         this.Suerte = suerte;
         this.DmgRange = DmgRange;
     }

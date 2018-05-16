@@ -21,6 +21,7 @@ public class ChangeScene : MonoBehaviour {
     public static void LoadF(string a)
     {
         DataClass.player = JsonUtility.FromJson<Player>(a);
+        Debug.Log(DataClass.player.toJson());
         SceneManager.LoadScene("Game");
     }
 
