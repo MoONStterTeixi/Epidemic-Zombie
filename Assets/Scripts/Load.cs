@@ -10,9 +10,11 @@ public class Load : MonoBehaviour {
         try {
             Conection con = gameObject.AddComponent<Conection>();
             con.FunctionEZ(DataClass.usr, "get");
+
         }
         catch(Exception e)
         {
+            Debug.Log(e);
             SceneManager.LoadScene("Acces");
         }
     }

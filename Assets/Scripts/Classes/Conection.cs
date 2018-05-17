@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class Conection : MonoBehaviour {
@@ -16,20 +17,18 @@ public class Conection : MonoBehaviour {
         StartCoroutine(GetRequestEZ(url));
     }
 
-    public void FuncrtionEZU(Player ply, string action)
+    public void UpdateEZ(Player ply, string action)
     {
         string url = "https://moonstterinc.000webhostapp.com/EZ/query.php?action=" + action + "&json=" + ply.toJson();
-        Debug.Log(url);
-        StartCoroutine(SetRequestEZ(url));
+        StartCoroutine(UpdateEZ(url));
         
     }
 
-    IEnumerator SetRequestEZ(string LoginUrl)
+    IEnumerator UpdateEZ(string LoginUrl)
     {
         WWW www = new WWW(LoginUrl);
         yield return www;
         string returnvalue = www.text;
-        Debug.Log(returnvalue);
     }
 
     IEnumerator GetRequestSN(string LoginUrl)
@@ -44,7 +43,10 @@ public class Conection : MonoBehaviour {
     {
         WWW www = new WWW(LoginUrl);
         yield return www;
-        string returnvalue = www.text;
-        ChangeScene.LoadF(returnvalue);
+        DataClass.player = JsonUtility.FromJson<Player>(www.text);
+        WWW www2 = new WWW("https://moonstterinc.000webhostapp.com/EZ/query.php?action=getofflinemoney&json=" + DataClass.player.toJson());
+        yield return www2;
+        DataClass.Offline = Convert.ToInt32(www2.text);
+        ChangeScene.LoadF();
     }
 }
