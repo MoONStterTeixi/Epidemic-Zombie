@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,26 +9,44 @@ public class Survival : MonoBehaviour {
     private int vida { get; set; }
     private int state { get; set; }
     public Scrollbar VidaUI;
+    public Rigidbody2D Bala;
     Animator animator;
 
 
     public void Start()
     {
         animator = GetComponent<Animator>();
-        vida = DataClass.player.vidaMax;
+        vida = DataClass.player.VidaMax;
         StartCoroutine(EstateRequest());
     }
 
     public void Update()
     {
-        VidaUI.size = vida / DataClass.player.vidaMax;
+        float a = (float) vida / DataClass.player.VidaMax;
+        VidaUI.size = a;
+        Debug.Log(vida + " / " +  DataClass.player.VidaMax + " = " + a);
     }
-
+        
     void OnCollisionEnter2D(Collision2D coll)
     {
+        Debug.Log("Collision");
         if (coll.gameObject.tag.Equals("Zombie"))
         {
+            Debug.Log("Estado 1");
             state = 1;
+        }
+    }
+
+    public void OnAtack()
+    {
+        switch (state)
+        {
+            case 0: //Pistola
+                Rigidbody2D BalaClone = (Rigidbody2D)Instantiate(Bala, Bala.transform.position, Bala.transform.rotation);
+                break;
+            case 1: //Mele
+
+                break;
         }
     }
 
@@ -41,9 +60,10 @@ public class Survival : MonoBehaviour {
 
                     break;
                 case 1:
-
+                    vida -= 10;
                     break;
             }
+            yield return new WaitForSeconds(2.5f);
         }
     }
 }

@@ -44,6 +44,7 @@ public class Conection : MonoBehaviour {
         WWW www = new WWW(LoginUrl);
         yield return www;
         DataClass.player = JsonUtility.FromJson<Player>(www.text);
+        Debug.Log(DataClass.player.toJson());
         WWW www2 = new WWW("https://moonstterinc.000webhostapp.com/EZ/query.php?action=getofflinemoney&json=" + DataClass.player.toJson());
         yield return www2;
         DataClass.Offline = Convert.ToInt32(www2.text);

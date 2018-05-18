@@ -8,7 +8,7 @@ public class Player {
     public int money;
     public int act_round;
     //Stats
-    public int vidaMax;
+    public int VidaMax;
     public int DmgMele;
     public int Torreta;
     public int Suerte;
@@ -22,7 +22,7 @@ public class Player {
         this.money = money;
         this.act_round = act_round;
 
-        this.vidaMax = VidaMax;
+        this.VidaMax = VidaMax;
         this.DmgMele = DmgMele;
         this.Torreta = generacionOnline;
         this.Suerte = suerte;

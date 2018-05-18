@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Zombie : MonoBehaviour {
 
-    private int vida { get; set; }
-    private int damage { get; set; }
-    private int state { get; set; }
+    public int vida { get; set; }
+    public int damage { get; set; }
+    public int state { get; set; }
     Animator animator;
 
     public void Start()
@@ -19,7 +19,10 @@ public class Zombie : MonoBehaviour {
     {
         if (vida <= 0)
         {
-            this.animator.SetInteger("Status", 2);
+            animator.SetInteger("Status", 2);
+            Destroy(this.gameObject, animator.GetCurrentAnimatorStateInfo(0).length + 0.5f);
+            DataClass.player.experience += 30;
+            DataClass.player.experience += 10;
         }
         else if(state == 1)
         {
@@ -34,17 +37,18 @@ public class Zombie : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D coll)
     {
-        if (coll.gameObject.tag.Equals("Player"))
+        switch (coll.gameObject.tag)
         {
-            state = 1;
-        }
-        if (coll.gameObject.tag.Equals("Bala1"))
-        {
-            //gun
-        }
-        if (coll.gameObject.tag.Equals("Bala2"))
-        {
-            //torreta
+            case "Player":
+                state = 1;
+                break;
+            case "Bala":
+                Destroy(coll.gameObject);
+                vida -= DataClass.player.DmgRange;
+                break;
+            case "Bala2":
+
+                break;
         }
     }
 }
