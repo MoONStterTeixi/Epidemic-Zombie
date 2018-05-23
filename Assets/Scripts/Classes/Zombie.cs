@@ -8,6 +8,7 @@ public class Zombie : MonoBehaviour {
     public int damage { get; set; }
     public int state { get; set; }
     Animator animator;
+    bool die = false;
 
     public void Start()
     {
@@ -19,10 +20,15 @@ public class Zombie : MonoBehaviour {
     {
         if (vida <= 0)
         {
+            if (!die)
+            {
+                DataClass.player.experience += 30;
+                DataClass.player.money += 10;
+                die = true;
+                Spawn.CantZombie--;
+            }
             animator.SetInteger("Status", 2);
             Destroy(this.gameObject, animator.GetCurrentAnimatorStateInfo(0).length + 0.5f);
-            DataClass.player.experience += 30;
-            DataClass.player.experience += 10;
         }
         else if(state == 1)
         {
