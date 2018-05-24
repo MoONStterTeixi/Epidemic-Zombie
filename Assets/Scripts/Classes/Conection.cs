@@ -7,7 +7,7 @@ public class Conection : MonoBehaviour {
 
     public void FunctionSN(string action)
     {
-        string url = "https://moonstterinc.000webhostapp.com/SN/query.php?action=" + action + "&json=" + DataClass.usr.toJson();
+        string url = "http://www.moonstterinc.com/SN/query.php?action=" + action + "&json=" + DataClass.usr.toJson();
         StartCoroutine(GetRequestSN(url));
     }
 
@@ -36,6 +36,7 @@ public class Conection : MonoBehaviour {
         WWW www = new WWW(LoginUrl);
         yield return www;
         string returnvalue = www.text;
+        Debug.Log(www.text);
         ChangeScene.Login(returnvalue);
     }
 
@@ -43,6 +44,7 @@ public class Conection : MonoBehaviour {
     {
         WWW www = new WWW(LoginUrl);
         yield return www;
+        Debug.Log(www.text);
         DataClass.player = JsonUtility.FromJson<Player>(www.text);
         Debug.Log(DataClass.player.toJson());
         WWW www2 = new WWW("https://moonstterinc.000webhostapp.com/EZ/query.php?action=getofflinemoney&json=" + DataClass.player.toJson());

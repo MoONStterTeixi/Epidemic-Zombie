@@ -4,8 +4,6 @@ using UnityEngine.SceneManagement;
 
 public class Load : MonoBehaviour {
 
-    public static string username;
-
     void Start () {
         try {
             Conection con = gameObject.AddComponent<Conection>();

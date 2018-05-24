@@ -24,7 +24,6 @@ public class Survival : MonoBehaviour {
     {
         float a = (float) vida / DataClass.player.VidaMax;
         VidaUI.size = a;
-        Debug.Log(vida + " / " +  DataClass.player.VidaMax + " = " + a);
     }
         
     void OnCollisionEnter2D(Collision2D coll)
@@ -32,7 +31,6 @@ public class Survival : MonoBehaviour {
         Debug.Log("Collision");
         if (coll.gameObject.tag.Equals("Zombie"))
         {
-            Debug.Log("Estado 1");
             state = 1;
         }
     }
