@@ -16,7 +16,7 @@ public class Survival : MonoBehaviour {
     public void Start()
     {
         animator = GetComponent<Animator>();
-        vida = DataClass.player.VidaMax;
+        vida = DataClass.player.getVida();
         StartCoroutine(EstateRequest());
     }
 

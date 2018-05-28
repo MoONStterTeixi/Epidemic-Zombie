@@ -14,7 +14,7 @@ public class Player {
     public int Suerte;
     public int DmgRange;
 
-    public Player(int id, string nombre, int experience, int money, int act_round, int VidaMax, int DmgMele,int generacionOnline,int suerte, int DmgRange)
+    public Player(int id, string nombre, int experience, int money, int act_round, int VidaMax, int DmgMele, int generacionOnline, int suerte, int DmgRange)
     {
         this.id = id;
         this.nickname = nombre;
@@ -27,6 +27,15 @@ public class Player {
         this.Torreta = generacionOnline;
         this.Suerte = suerte;
         this.DmgRange = DmgRange;
+    }
+
+    public int getVida()
+    {
+        return (int) (((this.VidaMax / 10)-0.1)+1) * 100;
+    }
+    public int getdmg()
+    {
+        return (int) (((this.DmgRange / 10) - 0.1) + 1) * 10;
     }
 
     public string toJson()

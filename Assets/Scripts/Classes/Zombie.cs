@@ -23,7 +23,8 @@ public class Zombie : MonoBehaviour {
             if (!die)
             {
                 DataClass.player.experience += 30;
-                DataClass.player.money += 10;
+                DataClass.player.money += 20;
+                DataClass.KillZ++;
                 die = true;
                 Spawn.CantZombie--;
             }
@@ -50,7 +51,7 @@ public class Zombie : MonoBehaviour {
                 break;
             case "Bala":
                 Destroy(coll.gameObject);
-                vida -= DataClass.player.DmgRange;
+                vida -= DataClass.player.getdmg();
                 break;
             case "Bala2":
 
