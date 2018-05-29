@@ -52,10 +52,22 @@ public class GameScene : MonoBehaviour {
         Nivelp.size = p/100;
         RondaAct.text = DataClass.player.act_round + " Round";
         Money.text = DataClass.player.money + " €";
+        if (DataClass.player.money <= 0) {
+            Life.enabled = false;
+            Mele.enabled = false;
+            Range.enabled = false;
+            Turret.enabled = false;
+        }
+        if(DataClass.KillZ >= 30)
+        {
+            DataClass.player.act_round++;
+            DataClass.KillZ = DataClass.KillZ - 30;
+        }
     }
     
     public void OnClickUp(int i)
     {
+        
         switch (i)
         {
             case 0://Life

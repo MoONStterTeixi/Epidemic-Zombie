@@ -27,6 +27,7 @@ public class Zombie : MonoBehaviour {
                 DataClass.KillZ++;
                 die = true;
                 Spawn.CantZombie--;
+                Survival.state = 0;
             }
             animator.SetInteger("Status", 2);
             Destroy(this.gameObject, animator.GetCurrentAnimatorStateInfo(0).length + 0.5f);
@@ -42,6 +43,11 @@ public class Zombie : MonoBehaviour {
         }
     }
 
+    public void MakeMeleDMG()
+    {
+        vida -= 30;
+    }
+
     void OnCollisionEnter2D(Collision2D coll)
     {
         switch (coll.gameObject.tag)
@@ -52,9 +58,6 @@ public class Zombie : MonoBehaviour {
             case "Bala":
                 Destroy(coll.gameObject);
                 vida -= DataClass.player.getdmg();
-                break;
-            case "Bala2":
-
                 break;
         }
     }
