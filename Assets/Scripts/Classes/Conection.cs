@@ -36,7 +36,6 @@ public class Conection : MonoBehaviour {
         WWW www = new WWW(LoginUrl);
         yield return www;
         string returnvalue = www.text;
-        Debug.Log(www.text);
         ChangeScene.Login(returnvalue);
     }
 

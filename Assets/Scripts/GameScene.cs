@@ -22,6 +22,8 @@ public class GameScene : MonoBehaviour {
     public Button Range;
     public Button Turret;
 
+    public Text Round;
+
 
     private void Start()
     {
@@ -38,27 +40,30 @@ public class GameScene : MonoBehaviour {
         MeleLvl.text = DataClass.player.DmgMele + "";
         RangeLvl.text = DataClass.player.DmgRange + "";
         TurretLvl.text = DataClass.player.Torreta + "";
-        if (DataClass.KillZ >= 30)
-        {
-            DataClass.KillZ -= 30;
-            DataClass.player.act_round++;
-        }
     }
 
     private void Update()
     {
+        Round.text = DataClass.KillZ + "/30";
         Nivel.text = (DataClass.player.experience/100) + "";
         float p = ((DataClass.player.experience % 100));
         Nivelp.size = p/100;
         RondaAct.text = DataClass.player.act_round + " Round";
         Money.text = DataClass.player.money + " €";
-        if (DataClass.player.money <= 0) {
+        if (DataClass.player.money < 200) {
             Life.enabled = false;
             Mele.enabled = false;
             Range.enabled = false;
             Turret.enabled = false;
         }
-        if(DataClass.KillZ >= 30)
+        if (DataClass.player.money >= 200)
+        {
+            Life.enabled = true;
+            Mele.enabled = true;
+            Range.enabled = true;
+            Turret.enabled = true;
+        }
+        if (DataClass.KillZ >= 30)
         {
             DataClass.player.act_round++;
             DataClass.KillZ = DataClass.KillZ - 30;

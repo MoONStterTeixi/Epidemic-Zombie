@@ -5,13 +5,14 @@ using UnityEngine;
 [System.Serializable]
 public class User{
 
+    public int ID;
     public string email;
     public string password;
     public string username;
     public int genre;
-    public bool sub;
+    public int sub;
 
-    public User(string email, string password, string username, int genre, bool sub)
+    public User(int ID, string email, string password, string username, int genre, int sub)
     {
         this.email = email;
         this.password = password;
