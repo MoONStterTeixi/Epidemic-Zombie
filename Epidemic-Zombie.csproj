@@ -351,6 +351,7 @@
     <Compile Include="Assets\Scripts\Classes\Survival.cs" />
     <Compile Include="Assets\Scripts\Classes\User.cs" />
     <Compile Include="Assets\Scripts\Classes\Zombie.cs" />
+    <Compile Include="Assets\Scripts\DieScene.cs" />
     <Compile Include="Assets\Scripts\GameScene.cs" />
     <Compile Include="Assets\Scripts\Load.cs" />
     <Compile Include="Assets\Scripts\Login.cs" />

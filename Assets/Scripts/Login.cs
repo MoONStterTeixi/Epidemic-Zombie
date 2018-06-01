@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Login : MonoBehaviour {
@@ -10,6 +9,7 @@ public class Login : MonoBehaviour {
     public InputField passw;
     public GameObject LoginCanvas;
     public GameObject LoadingCanvas;
+    public GameObject Err;
 
     public void OnLogin()
     {
@@ -25,13 +25,18 @@ public class Login : MonoBehaviour {
         }
         else
         {
-
+            Err.SetActive(true);
         }
 
     }
+
+    public void onClick()
+    {
+        Err.SetActive(false);
+    }
     public void OnRegister()
     {
-        Application.OpenURL("http://unity3d.com/");
+        Application.OpenURL("http://MoONStterINC.com");
     }
 
     public static bool IsValidEmail(string strIn)

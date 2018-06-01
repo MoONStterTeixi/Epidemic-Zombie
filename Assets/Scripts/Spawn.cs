@@ -15,7 +15,7 @@ public class Spawn : MonoBehaviour {
 
     IEnumerator SpawnEvent()
     {
-        while (CantZombie <= 2)
+        while (CantZombie <= 3)
         {
                 Rigidbody2D BalaClone = (Rigidbody2D)Instantiate(Zombie1, Zombie1.transform.position, Zombie1.transform.rotation);
                 CantZombie++;

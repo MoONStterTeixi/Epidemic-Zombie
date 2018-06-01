@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Survival : MonoBehaviour {
@@ -36,6 +37,7 @@ public class Survival : MonoBehaviour {
         if(vida <= 0)
         {
             state = 3;
+            SceneManager.LoadScene("Die");
         }
     }
         
@@ -78,7 +80,7 @@ public class Survival : MonoBehaviour {
                     Debug.Log("Has muerto.");
                     break;
                 case 1:
-                    vida -= 10;
+                    vida -= 100;
                     break;
             }
             yield return new WaitForSeconds(2.5f);
