@@ -10,6 +10,13 @@ public class Login : MonoBehaviour {
     public GameObject LoginCanvas;
     public GameObject LoadingCanvas;
     public GameObject Err;
+    public Toggle cb;
+
+    public void Start()
+    {
+        user.text = PlayerPrefs.GetString("Mail");
+        passw.text = PlayerPrefs.GetString("Pass");
+    }
 
     public void OnLogin()
     {
@@ -21,7 +28,13 @@ public class Login : MonoBehaviour {
             LoginCanvas.SetActive(false);
             LoadingCanvas.SetActive(true);
             DataClass.usr = new User(nombre, pass);
+            if (cb.isOn)
+            {
+                PlayerPrefs.SetString("Mail", user.text);
+                PlayerPrefs.SetString("Pass", passw.text);
+            }
             con.FunctionSN("login");
+
         }
         else
         {
@@ -46,4 +59,9 @@ public class Login : MonoBehaviour {
                @"^(?("")("".+?""@)|(([0-9a-zA-Z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-zA-Z])@))" +
                @"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,6}))$");
     }
+
+    public void Savedata(bool status)
+    {
+    }
+
 }

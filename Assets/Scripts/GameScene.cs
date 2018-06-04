@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameScene : MonoBehaviour {
@@ -103,6 +104,10 @@ public class GameScene : MonoBehaviour {
             yield return new WaitForSeconds(2.5f);
             con.UpdateEZ(DataClass.player, "update");
         }
+    }
+    public void onExit()
+    {
+        SceneManager.LoadScene("Acces");
     }
 
 }

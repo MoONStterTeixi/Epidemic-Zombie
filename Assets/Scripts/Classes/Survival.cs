@@ -13,6 +13,9 @@ public class Survival : MonoBehaviour {
     public Text VidaUI;
     public Rigidbody2D Bala;
     Animator animator;
+    public bool shoting = true;
+    public int cargador = 10;
+    public Text Municon;
 
 
     public void Start()
@@ -24,6 +27,7 @@ public class Survival : MonoBehaviour {
 
     public void Update()
     {
+        Municon.text = cargador + "/10";
         float a = (float) vida / DataClass.player.VidaMax;
         VidaUI.text = vida + "/" + DataClass.player.getVida();
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("shot"))
@@ -38,6 +42,10 @@ public class Survival : MonoBehaviour {
         {
             state = 3;
             SceneManager.LoadScene("Die");
+        }
+        if(cargador == 0)
+        {
+            StartCoroutine(Recargar());
         }
     }
         
@@ -60,8 +68,12 @@ public class Survival : MonoBehaviour {
         switch (state)
         {
             case 0: //Pistola
-                Rigidbody2D BalaClone = (Rigidbody2D)Instantiate(Bala, Bala.transform.position, Bala.transform.rotation);
-                animator.SetInteger("status", 2);
+                if (shoting)
+                {
+                    Rigidbody2D BalaClone = (Rigidbody2D)Instantiate(Bala, Bala.transform.position, Bala.transform.rotation);
+                    animator.SetInteger("status", 2);
+                    cargador--;
+                }
                 break;
             case 1: //Mele
                 actzombi.gameObject.GetComponent<Zombie>().MakeMeleDMG();
@@ -85,5 +97,13 @@ public class Survival : MonoBehaviour {
             }
             yield return new WaitForSeconds(2.5f);
         }
+    }
+    IEnumerator Recargar()
+    {
+            shoting = false;
+            Debug.Log("Recargando");
+            yield return new WaitForSeconds(2.5f);
+            cargador = 10;
+            shoting = true;
     }
 }
